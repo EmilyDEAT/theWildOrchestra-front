@@ -1,0 +1,28 @@
+.Header {
+  background-color: black;
+  color: white;
+  font-family: 'anton';
+}
+
+.Header-container {
+  width:95%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header-logo {
+  width: 100px
+}
+
+.Header-navbar {
+  list-style: none;
+  width: 150px;
+  display: flex;
+  justify-content: space-between;
+} 
+
+.Header-tickets {
+  width: 40px
+}
