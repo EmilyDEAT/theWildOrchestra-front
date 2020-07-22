@@ -20,9 +20,18 @@
   list-style: none;
   width: 150px;
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  text-align: center;
+  /* justify-content: space-between; */
 } 
 
 .Header-tickets {
   width: 40px
+}
+
+@media screen and (min-width: 600px) {
+  .Header-navbar {
+    flex-direction: row;
+    justify-content: space-between;
+}
 }
