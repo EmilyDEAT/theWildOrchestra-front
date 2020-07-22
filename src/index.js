@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL || 'http://localhost:8000'
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
