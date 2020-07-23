@@ -1,0 +1,27 @@
+.ConcertForm-container {
+  position: fixed;
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(35,37,42,0.7);
+  overflow: scroll;
+}
+
+.ConcertForm-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: white;
+  margin: auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 800px;
+}
+
+.ConcertForm-close {
+  width:20px;
+  cursor: pointer;
+}

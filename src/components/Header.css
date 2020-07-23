@@ -1,0 +1,41 @@
+.Header {
+  height: 15vh;
+  background-color: black;
+  color: white;
+  font-family: 'anton';
+}
+
+.Header-container {
+  width:95%;
+  height: 100%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Header-logo {
+  width: 100px
+}
+
+.Header-navbar {
+  list-style: none;
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+} 
+
+.Header-tickets {
+  width: 40px
+}
+
+@media screen and (min-width: 600px) {
+  .Header {
+    height: 10vh;
+  }
+  .Header-navbar {
+    flex-direction: row;
+    justify-content: space-between;
+}
+}

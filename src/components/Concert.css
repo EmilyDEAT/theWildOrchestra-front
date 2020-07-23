@@ -1,0 +1,36 @@
+.Concert-container {
+ text-align: center;
+ margin: 5%
+}
+
+.Concert-date strong {
+  font-weight: bold;
+}
+
+.Concert-location em {
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+.Concert-project {
+  text-transform: uppercase;
+  color: var(--yellow-color)
+}
+
+.Concert-edit, .Concert-delete {
+  width: 15px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+@media screen and (min-width: 600px) {
+  .Concert-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: left;
+  }
+  .Concert-info {
+    width: 70%;
+  }
+}

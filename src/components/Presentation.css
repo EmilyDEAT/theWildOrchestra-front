@@ -1,0 +1,28 @@
+.Presentation-container {
+  height: 85vh;
+  width: 100vw;
+  position: relative;
+  text-align: right;
+  color: white;
+}
+.Presentation-image {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.Presentation-text {
+  position: absolute;
+  bottom: 8px;
+  right: 16px;
+  width: 80%;
+}
+
+@media screen and (min-width: 600px) {
+  .Presentation-container {
+    height: 90vh;
+  }
+  .Presentation-text {
+    width: 50%;
+  }
+}
