@@ -10,6 +10,32 @@ import plus from '../images/plus.png'
 
 const Agenda = () => {
   const [concerts, setConcerts] = useState(null)
+  const [openForm, setOpenForm] = useState(false)
+  const [mode, setMode] = useState(null)
+  const [idEdit, setIdEdit] = useState(null)
+
+  const createForm = () => {
+    setMode('create')
+    setOpenForm(true)
+  }
+
+  const editForm = (e) => {
+    setMode('update')
+    setIdEdit(e.target.id)
+    setOpenForm(true)
+  }
+
+  const closeForm = () => {
+    setMode(null)
+    setIdEdit(null)
+    setOpenForm(false)
+  }
+
+  const deleteConcert = (e) => {
+    setMode('delete')
+    axios.delete(`/api/concerts/${e.target.id}`)
+    .then(setOpenForm(true))
+  }
 
   const getConcerts = () => {
     axios.get('/api/concerts')
@@ -22,10 +48,10 @@ const Agenda = () => {
     <div className='Agenda-container'>
       <Title title='Agenda' />
       <div className='Agenda-grid'>
-        {concerts.map(concert => <Concert concert={concert} />)}
+        {concerts.map(concert => <Concert concert={concert} editConcert={editForm} deleteConcert={deleteConcert} />)}
       </div>
-      <img className='Agenda-add' src={plus} alt='ajouter concert' />
-      <ConcertForm />
+      <img className='Agenda-add' src={plus} alt='ajouter concert' onClick={createForm} />
+      {openForm ? <ConcertForm mode={mode} close={closeForm} idEdit={idEdit} /> : null }
     </div>
   )
 }

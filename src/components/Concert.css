@@ -17,6 +17,12 @@
   color: var(--yellow-color)
 }
 
+.Concert-edit, .Concert-delete {
+  width: 15px;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
 @media screen and (min-width: 600px) {
   .Concert-container {
     display: flex;
