@@ -1,9 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
-import Agenda from './components/Agenda';
+import Agenda from './components/Agenda/Agenda';
 import Header from './components/Header';
-import Presentation from './components/Presentation';
+import Presentation from './components/Home/Presentation';
 
 import './App.css';
 

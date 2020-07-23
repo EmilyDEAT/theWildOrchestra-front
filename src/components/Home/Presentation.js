@@ -1,7 +1,7 @@
 import React from 'react'
 
 import './Presentation.css'
-import orchestra from '../images/orchestra.jpg'
+import orchestra from '../../images/orchestra.jpg'
 
 const Presentation = () => {
   return (

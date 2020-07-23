@@ -3,10 +3,10 @@ import axios from 'axios'
 
 import Concert from './Concert'
 import ConcertForm from './ConcertForm'
-import Title from './Title'
+import Title from '../Title'
 
 import './Agenda.css'
-import plus from '../images/plus.png'
+import plus from '../../images/plus.png'
 
 const Agenda = () => {
   const [concerts, setConcerts] = useState(null)

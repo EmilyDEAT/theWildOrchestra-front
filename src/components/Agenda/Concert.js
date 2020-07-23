@@ -1,11 +1,11 @@
 import React from 'react'
-import { dateConvert } from './utils';
+import { dateConvert } from '../utils';
 
 import Button from './Button'
 
 import './Concert.css'
-import editImg from '../images/edit.png'
-import deleteImg from '../images/delete.png'
+import editImg from '../../images/edit.png'
+import deleteImg from '../../images/delete.png'
 
 const Concert = ({ concert, editConcert, deleteConcert }) => {
   return (

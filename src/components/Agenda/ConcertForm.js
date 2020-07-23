@@ -4,7 +4,7 @@ import axios from 'axios'
 import Button from './Button'
 
 import './ConcertForm.css'
-import closeImg from '../images/close.png'
+import closeImg from '../../images/close.png'
 
 const ConcertForm = ({ mode, close, idEdit }) => {
   const [concert, setConcert] = useState(null)
