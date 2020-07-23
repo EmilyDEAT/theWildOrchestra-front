@@ -1,0 +1,19 @@
+.Agenda-container {
+  width: 80%;
+  margin: auto;
+}
+
+.Agenda-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 5%;
+  justify-content: center;
+  max-width: 1000px;
+  margin: auto;
+}
+
+@media screen and (min-width: 800px) {
+  .Agenda-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

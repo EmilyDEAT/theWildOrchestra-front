@@ -1,0 +1,19 @@
+.Button-container {
+  text-transform: uppercase;
+  border: none;
+  height: 30px;
+  width: 100px;
+  font-family: 'roboto';
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.yellow {
+  background-color: var(--yellow-color);
+  color: black;
+}
+
+.black {
+  background-color: black;
+  color: white;
+}

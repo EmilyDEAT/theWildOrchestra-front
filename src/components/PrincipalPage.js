@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Agenda from './Agenda'
 import Header from './Header'
 import Presentation from './Presentation'
 
@@ -10,6 +11,7 @@ const PrincipalPage = () => {
     <div className='PrincipalPage-container'>
       <Header />
       <Presentation />
+      <Agenda />
     </div>
   )
 }
