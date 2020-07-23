@@ -26,6 +26,19 @@
   text-align: center;
 } 
 
+.Header-navbar .active {
+  color: var(--yellow-color);
+}
+
+.Header-navbar a {
+  color:white;
+  text-decoration: none;
+}
+
+.Header-navbar :hover {
+  color: #ffdd007d;
+}
+
 .Header-tickets {
   width: 40px
 }
