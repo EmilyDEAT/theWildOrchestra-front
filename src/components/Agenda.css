@@ -1,15 +1,21 @@
 .Agenda-container {
   width: 80%;
   margin: auto;
+  text-align: center;
 }
 
 .Agenda-grid {
   display: grid;
   grid-template-columns: 1fr;
-  grid-gap: 5%;
+  grid-row: auto;
   justify-content: center;
   max-width: 1000px;
   margin: auto;
+}
+
+.Agenda-add {
+  width: 30px;
+  cursor:pointer
 }
 
 @media screen and (min-width: 800px) {

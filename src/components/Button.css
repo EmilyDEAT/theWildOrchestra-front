@@ -2,10 +2,10 @@
   text-transform: uppercase;
   border: none;
   height: 30px;
-  width: 100px;
   font-family: 'roboto';
   border-radius: 10px;
   cursor: pointer;
+  padding: 0 10px 0 10px;
 }
 
 .yellow {
