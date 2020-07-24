@@ -1,0 +1,11 @@
+.MusiciansList-container {
+  width: 90%;
+  margin: auto;
+}
+
+.MusiciansList-grid {
+  display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 300px));
+  grid-gap: 20px;
+  justify-content: center;
+}

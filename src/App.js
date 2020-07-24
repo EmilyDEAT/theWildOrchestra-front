@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Agenda from './components/Agenda/Agenda';
 import Header from './components/Header';
+import MusiciansList from './components/Musicians/MusiciansList';
 import Presentation from './components/Home/Presentation';
 
 import './App.css';
@@ -14,7 +15,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Presentation} />
         <Route path="/agenda" component={Agenda} />
-        <Route path="/musiciens" />
+        <Route path="/musiciens" component={MusiciansList}/>
       </Switch>
     </div>
   );
