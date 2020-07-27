@@ -9,3 +9,8 @@
   grid-gap: 20px;
   justify-content: center;
 }
+
+.Musician-add {
+  width: 30px;
+  cursor:pointer
+}
