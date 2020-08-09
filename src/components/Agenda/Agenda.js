@@ -5,6 +5,7 @@ import Concert from './Concert'
 import ConcertFormContainer from './ConcertFormContainer'
 import ConcertDeleteConfirm from './ConcertDeleteConfirm'
 import Title from '../Title'
+import { sortConcertsByDate } from '../utils'
 
 import './Agenda.css'
 import plus from '../../images/plus.png'
@@ -45,15 +46,15 @@ const Agenda = () => {
   const addConcert = (newConcert) => {
     setConcerts((prevConcerts) => {
       const nextConcerts = [...prevConcerts, newConcert]
-      nextConcerts.sort((concert1, concert2) => {
-        if (concert1.date !== concert2.date) {
-          return concert1.date < concert2.date ? -1 : 1
-        }
-        if (concert1.time !== concert2.time) {
-          return concert1.time < concert2.time ? -1 : 1
-        }
-        return 0
-      })
+      nextConcerts.sort(sortConcertsByDate)
+      return nextConcerts
+    })
+  }
+
+  const updateConcert = (updatedConcert) => {
+    setConcerts((prevConcerts) => {
+      const nextConcerts = prevConcerts.map(concert => concert.id === updatedConcert.id ? updatedConcert : concert)
+      nextConcerts.sort(sortConcertsByDate)
       return nextConcerts
     })
   }
@@ -90,6 +91,7 @@ const Agenda = () => {
           close={closeForm}
           idEdit={idEdit}
           afterCreate={addConcert}
+          afterUpdate={updateConcert}
         />
       )}
     </div>

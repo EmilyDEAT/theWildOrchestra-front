@@ -32,4 +32,14 @@ const dateConvert = (date) => {
   return `${daysOfWeek[dayOfWeek]} ${day} ${months[month]} ${year}`
 }
 
-export { dateConvert }
+const sortConcertsByDate = (concert1, concert2) => {
+  if (concert1.date !== concert2.date) {
+    return concert1.date < concert2.date ? -1 : 1
+  }
+  if (concert1.time !== concert2.time) {
+    return concert1.time < concert2.time ? -1 : 1
+  }
+  return 0
+}
+
+export { dateConvert, sortConcertsByDate }

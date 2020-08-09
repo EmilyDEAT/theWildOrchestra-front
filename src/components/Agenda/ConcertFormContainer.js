@@ -3,7 +3,13 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import ConcertForm from './ConcertForm'
 
-const ConcertFormContainer = ({ mode, close, idEdit, afterCreate }) => {
+const ConcertFormContainer = ({
+  mode,
+  close,
+  idEdit,
+  afterCreate,
+  afterUpdate
+}) => {
   const [projects, setProjects] = useState(null)
   const [cities, setCities] = useState(null)
   const [locations, setLocations] = useState(null)
@@ -36,7 +42,10 @@ const ConcertFormContainer = ({ mode, close, idEdit, afterCreate }) => {
         afterCreate(res.data)
       })
     } else if (mode === 'update') {
-      axios.put(`/api/concerts/${idEdit}`, form).then(() => setSuccess(true))
+      axios.put(`/api/concerts/${idEdit}`, form).then((res) => {
+        setSuccess(true)
+        afterUpdate(res.data)
+      })
     }
   }
 
@@ -102,7 +111,8 @@ ConcertFormContainer.propTypes = {
   mode: PropTypes.oneOf(['create', 'update']),
   close: PropTypes.func,
   idEdit: PropTypes.string,
-  afterCreate: PropTypes.func
+  afterCreate: PropTypes.func,
+  afterUpdate: PropTypes.func
 }
 
 export default ConcertFormContainer
