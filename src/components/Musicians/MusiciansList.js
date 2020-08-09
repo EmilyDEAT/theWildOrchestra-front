@@ -21,20 +21,28 @@ const MusiciansList = () => {
   }
 
   const getMusicians = () => {
-    axios.get('/api/musicians')
-      .then(res => setMusicians(res.data))
+    axios.get('/api/musicians').then((res) => setMusicians(res.data))
   }
 
-  useEffect(() => getMusicians(),  [])
+  useEffect(() => getMusicians(), [])
 
-  return musicians === null ? 'Loading' : (
-    <div className='MusiciansList-container'>
-      <Title title='Musiciens' />
-      <div className='MusiciansList-grid'> 
-        {musicians.map(musician => <Musician musician={musician} />)}
+  return musicians === null ? (
+    'Loading'
+  ) : (
+    <div className="MusiciansList-container">
+      <Title title="Musiciens" />
+      <div className="MusiciansList-grid">
+        {musicians.map((musician) => (
+          <Musician musician={musician} />
+        ))}
       </div>
-      <img className='Musician-add' src={plus} alt='ajouter musicien' onClick={createForm} />
-      {openForm ? <MusicianForm close={closeForm} /> : null }
+      <img
+        className="Musician-add"
+        src={plus}
+        alt="ajouter musicien"
+        onClick={createForm}
+      />
+      {openForm ? <MusicianForm close={closeForm} /> : null}
     </div>
   )
 }

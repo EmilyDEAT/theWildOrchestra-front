@@ -33,25 +33,38 @@ const Agenda = () => {
 
   const deleteConcert = (e) => {
     setMode('delete')
-    axios.delete(`/api/concerts/${e.target.id}`)
-    .then(setOpenForm(true))
+    axios.delete(`/api/concerts/${e.target.id}`).then(setOpenForm(true))
   }
 
   const getConcerts = () => {
-    axios.get('/api/concerts')
-      .then(res => setConcerts(res.data))
+    axios.get('/api/concerts').then((res) => setConcerts(res.data))
   }
 
   useEffect(() => getConcerts(), [])
 
-  return concerts === null ? 'Loading' : (
-    <div className='Agenda-container'>
-      <Title title='Agenda' />
-      <div className='Agenda-grid'>
-        {concerts.map(concert => <Concert concert={concert} editConcert={editForm} deleteConcert={deleteConcert} />)}
+  return concerts === null ? (
+    'Loading'
+  ) : (
+    <div className="Agenda-container">
+      <Title title="Agenda" />
+      <div className="Agenda-grid">
+        {concerts.map((concert) => (
+          <Concert
+            concert={concert}
+            editConcert={editForm}
+            deleteConcert={deleteConcert}
+          />
+        ))}
       </div>
-      <img className='Agenda-add' src={plus} alt='ajouter concert' onClick={createForm} />
-      {openForm ? <ConcertForm mode={mode} close={closeForm} idEdit={idEdit} /> : null }
+      <img
+        className="Agenda-add"
+        src={plus}
+        alt="ajouter concert"
+        onClick={createForm}
+      />
+      {openForm ? (
+        <ConcertForm mode={mode} close={closeForm} idEdit={idEdit} />
+      ) : null}
     </div>
   )
 }
