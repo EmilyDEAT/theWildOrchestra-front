@@ -42,6 +42,22 @@ const Agenda = () => {
     axios.get('/api/concerts').then((res) => setConcerts(res.data))
   }
 
+  const addConcert = (newConcert) => {
+    setConcerts((prevConcerts) => {
+      const nextConcerts = [...prevConcerts, newConcert]
+      nextConcerts.sort((concert1, concert2) => {
+        if (concert1.date !== concert2.date) {
+          return concert1.date < concert2.date ? -1 : 1
+        }
+        if (concert1.time !== concert2.time) {
+          return concert1.time < concert2.time ? -1 : 1
+        }
+        return 0
+      })
+      return nextConcerts
+    })
+  }
+
   useEffect(() => getConcerts(), [])
 
   if (concerts === null) {
@@ -68,7 +84,14 @@ const Agenda = () => {
         alt="ajouter concert"
         onClick={createForm}
       />
-      {mode && <ModalComponent mode={mode} close={closeForm} idEdit={idEdit} />}
+      {mode && (
+        <ModalComponent
+          mode={mode}
+          close={closeForm}
+          idEdit={idEdit}
+          afterCreate={addConcert}
+        />
+      )}
     </div>
   )
 }

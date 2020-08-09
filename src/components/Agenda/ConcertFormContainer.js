@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
+import PropTypes from 'prop-types'
 import axios from 'axios'
 import ConcertForm from './ConcertForm'
 
-const ConcertFormContainer = ({ mode, close, idEdit }) => {
+const ConcertFormContainer = ({ mode, close, idEdit, afterCreate }) => {
   const [projects, setProjects] = useState(null)
   const [cities, setCities] = useState(null)
   const [locations, setLocations] = useState(null)
@@ -30,21 +31,12 @@ const ConcertFormContainer = ({ mode, close, idEdit }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     if (mode === 'create') {
-      axios.post('/api/concerts', form).then(() => setSuccess(true))
+      axios.post('/api/concerts', form).then((res) => {
+        setSuccess(true)
+        afterCreate(res.data)
+      })
     } else if (mode === 'update') {
-      const {
-        date,
-        time,
-        id_location: idLocation,
-        id_project: idProject
-      } = form
-      const payload = {
-        date,
-        time,
-        id_location: idLocation,
-        id_project: idProject
-      }
-      axios.put(`/api/concerts/${idEdit}`, payload).then(() => setSuccess(true))
+      axios.put(`/api/concerts/${idEdit}`, form).then(() => setSuccess(true))
     }
   }
 
@@ -53,7 +45,19 @@ const ConcertFormContainer = ({ mode, close, idEdit }) => {
       return
     }
     axios.get(`/api/concerts/${idEdit}`).then((res) => {
-      setForm(res.data)
+      const {
+        date,
+        time,
+        id_location: idLocation,
+        id_project: idProject
+      } = res.data
+      const nextForm = {
+        date,
+        time,
+        id_location: idLocation,
+        id_project: idProject
+      }
+      setForm(nextForm)
       setCity(res.data.city)
     })
   }
@@ -92,6 +96,13 @@ const ConcertFormContainer = ({ mode, close, idEdit }) => {
       handleSubmit={handleSubmit}
     />
   )
+}
+
+ConcertFormContainer.propTypes = {
+  mode: PropTypes.oneOf(['create', 'update']),
+  close: PropTypes.func,
+  idEdit: PropTypes.string,
+  afterCreate: PropTypes.func
 }
 
 export default ConcertFormContainer
