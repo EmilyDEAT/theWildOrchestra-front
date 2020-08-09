@@ -50,6 +50,7 @@ const Agenda = () => {
       <div className="Agenda-grid">
         {concerts.map((concert) => (
           <Concert
+            key={concert.id}
             concert={concert}
             editConcert={editForm}
             deleteConcert={deleteConcert}

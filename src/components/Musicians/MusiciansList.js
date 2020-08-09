@@ -33,7 +33,7 @@ const MusiciansList = () => {
       <Title title="Musiciens" />
       <div className="MusiciansList-grid">
         {musicians.map((musician) => (
-          <Musician musician={musician} />
+          <Musician key={musician.id} musician={musician} />
         ))}
       </div>
       <img

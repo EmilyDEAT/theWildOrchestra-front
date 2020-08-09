@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { dateConvert } from '../utils'
 
 import Button from './Button'
@@ -36,6 +37,19 @@ const Concert = ({ concert, editConcert, deleteConcert }) => {
       <Button text="Réserver" yellow />
     </div>
   )
+}
+
+Concert.propTypes = {
+  concert: PropTypes.shape({
+    id: PropTypes.number,
+    date: PropTypes.string,
+    time: PropTypes.string,
+    city: PropTypes.string,
+    concert_hall: PropTypes.string,
+    project: PropTypes.string
+  }),
+  editConcert: PropTypes.func,
+  deleteConcert: PropTypes.func
 }
 
 export default Concert

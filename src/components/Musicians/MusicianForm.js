@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
+import PropTypes from 'prop-types'
 
 import Button from '../Agenda/Button'
 
@@ -50,7 +51,7 @@ const MusicianForm = ({ close }) => {
           alt="close formulaire"
           onClick={close}
         />
-        <h2>Ajout d'un musicien</h2>
+        <h2>Ajout d&apos;un musicien</h2>
         <label htmlFor="Fistname">Prénom</label>
         <input type="text" name="firstname" onChange={handleChange} />
         <label htmlFor="Lastname">Nom</label>
@@ -59,7 +60,9 @@ const MusicianForm = ({ close }) => {
         <select name="id_instrument" onChange={handleChange}>
           <option value="">Choisis un instrument</option>
           {instruments.map((instru) => (
-            <option value={instru.id}>{instru.instrument}</option>
+            <option key={instru.id} value={instru.id}>
+              {instru.instrument}
+            </option>
           ))}
         </select>
         <input type="file" onChange={onFileChange} />
@@ -68,6 +71,10 @@ const MusicianForm = ({ close }) => {
       </form>
     </div>
   )
+}
+
+MusicianForm.propTypes = {
+  close: PropTypes.func.isRequired
 }
 
 export default MusicianForm

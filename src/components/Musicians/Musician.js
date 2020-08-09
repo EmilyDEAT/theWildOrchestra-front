@@ -1,5 +1,5 @@
 import React from 'react'
-
+import PropTypes from 'prop-types'
 import './Musician.css'
 
 const Musician = ({ musician }) => {
@@ -14,6 +14,15 @@ const Musician = ({ musician }) => {
       <p className="Musician-instrument">{musician.instrument}</p>
     </div>
   )
+}
+
+Musician.propTypes = {
+  musician: PropTypes.shape({
+    firstname: PropTypes.string,
+    lastname: PropTypes.string,
+    instrument: PropTypes.string,
+    photo: PropTypes.string
+  })
 }
 
 export default Musician

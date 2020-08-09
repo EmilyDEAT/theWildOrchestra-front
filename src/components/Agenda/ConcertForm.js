@@ -113,9 +113,9 @@ const ConcertForm = ({ mode, close, idEdit }) => {
             onClick={close}
           />
           {mode === 'create' ? (
-            <h2>Ajout d'un concert</h2>
+            <h2>Ajout d&apos;un concert</h2>
           ) : (
-            <h2>Modification d'un concert</h2>
+            <h2>Modification d&apos;un concert</h2>
           )}
           {console.log('concert', concert)}
           {console.log('form', form)}
@@ -152,7 +152,9 @@ const ConcertForm = ({ mode, close, idEdit }) => {
               <option value={concert.city}>{concert.city}</option>
             )}
             {cities.map((city) => (
-              <option value={city.name}>{city.name}</option>
+              <option key={city.id} value={city.name}>
+                {city.name}
+              </option>
             ))}
           </select>
           {city === null ? (
@@ -171,7 +173,9 @@ const ConcertForm = ({ mode, close, idEdit }) => {
                   </option>
                 )}
                 {locations.map((location) => (
-                  <option value={location.id}>{location.concert_hall}</option>
+                  <option key={location.id} value={location.id}>
+                    {location.concert_hall}
+                  </option>
                 ))}
               </select>
             </>
@@ -184,7 +188,9 @@ const ConcertForm = ({ mode, close, idEdit }) => {
               <option value={concert.id_project}>{concert.project}</option>
             )}
             {projects.map((project) => (
-              <option value={project.id}>{project.title}</option>
+              <option key={project.id} value={project.id}>
+                {project.title}
+              </option>
             ))}
           </select>
           {mode === 'create' ? (
