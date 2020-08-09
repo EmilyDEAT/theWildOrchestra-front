@@ -3,37 +3,39 @@ import axios from 'axios'
 
 import Concert from './Concert'
 import ConcertFormContainer from './ConcertFormContainer'
+import ConcertDeleteConfirm from './ConcertDeleteConfirm'
 import Title from '../Title'
 
 import './Agenda.css'
 import plus from '../../images/plus.png'
 
+const modeComponentMap = {
+  create: ConcertFormContainer,
+  update: ConcertFormContainer,
+  delete: ConcertDeleteConfirm
+}
+
 const Agenda = () => {
   const [concerts, setConcerts] = useState(null)
-  const [openForm, setOpenForm] = useState(false)
   const [mode, setMode] = useState(null)
   const [idEdit, setIdEdit] = useState(null)
 
   const createForm = () => {
     setMode('create')
-    setOpenForm(true)
   }
 
   const editForm = (e) => {
     setMode('update')
     setIdEdit(e.target.id)
-    setOpenForm(true)
   }
 
   const closeForm = () => {
     setMode(null)
     setIdEdit(null)
-    setOpenForm(false)
   }
 
   const deleteConcert = (e) => {
-    setMode('delete')
-    axios.delete(`/api/concerts/${e.target.id}`).then(setOpenForm(true))
+    axios.delete(`/api/concerts/${e.target.id}`).then(() => setMode('delete'))
   }
 
   const getConcerts = () => {
@@ -42,9 +44,12 @@ const Agenda = () => {
 
   useEffect(() => getConcerts(), [])
 
-  return concerts === null ? (
-    'Loading'
-  ) : (
+  if (concerts === null) {
+    return 'Loading'
+  }
+
+  const ModalComponent = modeComponentMap[mode]
+  return (
     <div className="Agenda-container">
       <Title title="Agenda" />
       <div className="Agenda-grid">
@@ -63,9 +68,9 @@ const Agenda = () => {
         alt="ajouter concert"
         onClick={createForm}
       />
-      {openForm ? (
-        <ConcertFormContainer mode={mode} close={closeForm} idEdit={idEdit} />
-      ) : null}
+      {mode && (
+        <ModalComponent mode={mode} close={closeForm} idEdit={idEdit} />
+      )}
     </div>
   )
 }
