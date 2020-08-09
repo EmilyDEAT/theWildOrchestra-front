@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 
 import Concert from './Concert'
-import ConcertForm from './ConcertForm'
+import ConcertFormContainer from './ConcertFormContainer'
 import Title from '../Title'
 
 import './Agenda.css'
@@ -64,7 +64,7 @@ const Agenda = () => {
         onClick={createForm}
       />
       {openForm ? (
-        <ConcertForm mode={mode} close={closeForm} idEdit={idEdit} />
+        <ConcertFormContainer mode={mode} close={closeForm} idEdit={idEdit} />
       ) : null}
     </div>
   )
