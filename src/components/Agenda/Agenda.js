@@ -36,7 +36,17 @@ const Agenda = () => {
   }
 
   const deleteConcert = (e) => {
-    axios.delete(`/api/concerts/${e.target.id}`).then(() => setMode('delete'))
+    const deletedConcertId = Number(e.target.id)
+    axios.delete(`/api/concerts/${deletedConcertId}`).then(() => {
+      setMode('delete')
+      setConcerts((prevConcerts) => {
+        const nextConcerts = prevConcerts.filter(
+          (concert) => concert.id !== deletedConcertId
+        )
+        nextConcerts.sort(sortConcertsByDate)
+        return nextConcerts
+      })
+    })
   }
 
   const getConcerts = () => {
@@ -53,7 +63,9 @@ const Agenda = () => {
 
   const updateConcert = (updatedConcert) => {
     setConcerts((prevConcerts) => {
-      const nextConcerts = prevConcerts.map(concert => concert.id === updatedConcert.id ? updatedConcert : concert)
+      const nextConcerts = prevConcerts.map((concert) =>
+        concert.id === updatedConcert.id ? updatedConcert : concert
+      )
       nextConcerts.sort(sortConcertsByDate)
       return nextConcerts
     })
