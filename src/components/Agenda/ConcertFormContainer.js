@@ -3,7 +3,6 @@ import axios from 'axios'
 import ConcertForm from './ConcertForm'
 
 const ConcertFormContainer = ({ mode, close, idEdit }) => {
-  const [concert, setConcert] = useState(null)
   const [projects, setProjects] = useState(null)
   const [cities, setCities] = useState(null)
   const [locations, setLocations] = useState(null)
@@ -17,52 +16,44 @@ const ConcertFormContainer = ({ mode, close, idEdit }) => {
   const [success, setSuccess] = useState(false)
 
   const handleChange = (e) => {
-    if (e.target.name === 'city') {
-      setCity(e.target.value)
+    const { name, value: valueStr } = e.target
+    if (name === 'city') {
+      setCity(valueStr)
     } else {
-      setForm({ ...form, [e.target.name]: e.target.value })
+      const value = ['id_location', 'id_project'].includes(name)
+        ? Number(valueStr)
+        : valueStr
+      setForm({ ...form, [name]: value })
     }
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(form)
     if (mode === 'create') {
-      axios
-        .post('/api/concerts', {
-          date: e.target.date.value,
-          time: e.target.time.value,
-          id_location: e.target.id_location.value,
-          id_project: e.target.id_project.value
-        })
-        .then(setSuccess(true))
+      axios.post('/api/concerts', form).then(() => setSuccess(true))
     } else if (mode === 'update') {
-      axios
-        .put(`/api/concerts/${idEdit}`, {
-          date:
-            e.target.date.value !== concert.date
-              ? e.target.date.value
-              : concert.date,
-          time:
-            e.target.time.value !== concert.time
-              ? e.target.time.value
-              : concert.time,
-          id_location:
-            e.target.id_location.value !== concert.id_location
-              ? e.target.id_location.value
-              : concert.id_location,
-          id_project:
-            e.target.id_project.value !== concert.id_project
-              ? e.target.id_project.value
-              : concert.id_project
-        })
-        .then(setSuccess(true))
+      const {
+        date,
+        time,
+        id_location: idLocation,
+        id_project: idProject
+      } = form
+      const payload = {
+        date,
+        time,
+        id_location: idLocation,
+        id_project: idProject
+      }
+      axios.put(`/api/concerts/${idEdit}`, payload).then(() => setSuccess(true))
     }
   }
 
   const getConcert = () => {
+    if (!idEdit) {
+      return
+    }
     axios.get(`/api/concerts/${idEdit}`).then((res) => {
-      setConcert(res.data)
+      setForm(res.data)
       setCity(res.data.city)
     })
   }
@@ -73,6 +64,10 @@ const ConcertFormContainer = ({ mode, close, idEdit }) => {
     axios.get('/api/cities').then((res) => setCities(res.data))
   }
   const getLocations = () => {
+    if (!city) {
+      setLocations(null)
+      return
+    }
     axios
       .get(`/api/locations?city=${city}`)
       .then((res) => setLocations(res.data))
@@ -87,7 +82,7 @@ const ConcertFormContainer = ({ mode, close, idEdit }) => {
       mode={mode}
       close={close}
       idEdit={idEdit}
-      concert={concert}
+      form={form}
       projects={projects}
       cities={cities}
       city={city}

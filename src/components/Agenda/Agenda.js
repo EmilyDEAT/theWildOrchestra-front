@@ -68,9 +68,7 @@ const Agenda = () => {
         alt="ajouter concert"
         onClick={createForm}
       />
-      {mode && (
-        <ModalComponent mode={mode} close={closeForm} idEdit={idEdit} />
-      )}
+      {mode && <ModalComponent mode={mode} close={closeForm} idEdit={idEdit} />}
     </div>
   )
 }
